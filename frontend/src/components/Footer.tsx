@@ -8,11 +8,9 @@ const quickLinks = [
 ];
 
 const socialLinks = [
-  { href: "#", label: "GitHub" },
-  { href: "#", label: "LinkedIn" },
-  { href: "#", label: "Instagram" },
-  { href: "#", label: "Tiktok" },
-  { href: "#", label: "WhatsApp" },
+  { href: "https://github.com/angilberttosua-code", label: "GitHub" },
+  { href: "https://www.linkedin.com/in/angilbert-tosua-5b3ab1342/", label: "LinkedIn" },
+  { href: "https://www.instagram.com/egilyiaaa/", label: "Instagram" },
 ];
 
 export default function Footer() {

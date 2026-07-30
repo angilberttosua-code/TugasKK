@@ -66,8 +66,9 @@ export default function AboutPage() {
                 Perjalanan Saya
               </h2>
               <p className="text-gray-400 leading-relaxed">
-                Perjalanan saya di dunia programming dimulai sejak kelas X
-                ketika pertama kali belajar HTML dan CSS. Sejak saat itu, saya
+                Perjalanan saya di dunia programming dimulai sejak kelas 9 
+                ketika pertama kali tertarik dengan dunia programing, lalu saya
+                di SMK dengan memasuki juruan RPL. Sejak saat itu, saya
                 terus mengeksplorasi berbagai teknologi mulai dari JavaScript,
                 React, Next.js, hingga backend dengan Express.js dan database
                 MySQL.
