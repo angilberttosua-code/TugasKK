@@ -15,7 +15,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
+  const pathname = usePathname(); 
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -24,8 +24,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <Link
             href="/"
-            className="text-white font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent hover:from-indigo-300 hover:to-violet-300 transition-all duration-300"
-          >
+              className="text-indigo-400 font-bold hover:text-indigo-300 transition-colors duration-300">
             myportfolio
           </Link>
 

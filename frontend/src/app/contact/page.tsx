@@ -160,7 +160,7 @@ export default function ContactPage() {
                     { label: "LinkedIn", href: "https://www.linkedin.com/in/angilbert-tosua-5b3ab1342/" },
                     { label: "Instagram", href: "https://www.instagram.com/egilyiaaa/" },
                   ].map((social) => (
-                    <a
+                    <a 
                       key={social.label}
                       href={social.href}
                       target="_blank"
