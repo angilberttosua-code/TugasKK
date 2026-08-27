@@ -1,5 +1,6 @@
 const db = require("../config/db");
 
+// Fungsi Ambil Semua Skill
 const getAllSkills = (callback) => {
     const query = `
         SELECT 
@@ -19,6 +20,21 @@ const getAllSkills = (callback) => {
     });
 };
 
+const createSkill = (data, callback) => {
+    const query = `
+        INSERT INTO skills (skill_group_id, name, level, percentage) 
+        VALUES (?, ?, ?, ?)
+    `;
+    db.query(
+        query, 
+        [data.skill_group_id, data.name, data.level, data.percentage], 
+        (err, results) => {
+            callback(err, results);
+        }
+    );
+};
+
 module.exports = {
     getAllSkills,
+    createSkill,
 };

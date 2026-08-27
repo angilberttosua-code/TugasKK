@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getTestimonials, Testimonial } from "@/data/mockData";
+import { fetchTestimonials } from "@/data/api";
+import { Testimonial } from "@/data/mockData";
 import SkeletonCard from "@/components/SkeletonCard";
 
 export default function TestimonialPage() {
@@ -9,10 +10,10 @@ export default function TestimonialPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchTestimonials() {
+    async function loadTestimonials() {
       try {
         setLoading(true);
-        const data = await getTestimonials();
+        const data = await fetchTestimonials();
         setTestimonialsList(data);
       } catch (error) {
         console.error("Failed to fetch testimonials:", error);
@@ -20,7 +21,7 @@ export default function TestimonialPage() {
         setLoading(false);
       }
     }
-    fetchTestimonials();
+    loadTestimonials();
   }, []);
 
   return (

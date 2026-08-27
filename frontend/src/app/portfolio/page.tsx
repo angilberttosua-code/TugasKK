@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getProjects, Project } from "@/data/mockData";
+import { fetchProjects } from "@/data/api";
+import { Project } from "@/data/mockData";
 import SkeletonCard from "@/components/SkeletonCard";
 
 const categories = ["All", "Web Dev", "Mobile App", "UI/UX"];
@@ -12,10 +13,10 @@ export default function PortfolioPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchProjects() {
+    async function loadProjects() {
       try {
         setLoading(true);
-        const data = await getProjects();
+        const data = await fetchProjects();
         setProjectsList(data);
       } catch (error) {
         console.error("Failed to fetch projects:", error);
@@ -23,7 +24,7 @@ export default function PortfolioPage() {
         setLoading(false);
       }
     }
-    fetchProjects();
+    loadProjects();
   }, []);
 
   const filteredProjects =

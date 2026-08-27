@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { fetchCertificates } from "@/data/api";
 import Image from "next/image";
 import { getCertificates, Certificate } from "@/data/mockData";
 import SkeletonCard from "@/components/SkeletonCard";
@@ -11,10 +12,10 @@ export default function CertificatePage() {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
 
   useEffect(() => {
-    async function fetchCertificates() {
+    async function loadCertificates() {
       try {
         setLoading(true);
-        const data = await getCertificates();
+        const data = await fetchCertificates();
         setCertificatesList(data);
       } catch (error) {
         console.error("Failed to fetch certificates:", error);
@@ -22,7 +23,7 @@ export default function CertificatePage() {
         setLoading(false);
       }
     }
-    fetchCertificates();
+    loadCertificates();
   }, []);
 
   return (

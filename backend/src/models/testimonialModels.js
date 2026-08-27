@@ -7,6 +7,21 @@ const getAllTestimonials = (callback) => {
     });
 };
 
+const createTestimonial = (data, callback) => {
+    const query = `
+        INSERT INTO testimonials (name, role, company, avatar, stars, quote)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
+    db.query(
+        query,
+        [data.name, data.role, data.company, data.avatar, data.stars, data.quote],
+        (err, results) => {
+            callback(err, results);
+        }
+    );
+};
+
 module.exports = {
     getAllTestimonials,
+    createTestimonial,
 };
