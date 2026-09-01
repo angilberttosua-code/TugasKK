@@ -4,14 +4,15 @@ const app = express();
 
 const PORT = 5000;
 
-const db = require("./src/config/db");
+const db = require("./config/db");
 
-const heroRoute = require("./src/routes/heroRoute");
-const projectRoute = require("./src/routes/projectRoute");
-const messageRoute = require("./src/routes/messageRoute");
-const skillRoute = require("./src/routes/skillRoute");
-const certificateRoute = require("./src/routes/certificateRoutes");
-const testimonialRoute = require("./src/routes/testimonialRoutes");
+const heroRoute = require("./routes/heroRoute");
+const projectRoute = require("./routes/projectRoute");
+const messageRoute = require("./routes/messageRoute");
+const skillRoute = require("./routes/skillRoute");
+const certificateRoute = require("./routes/certificateRoutes");
+const testimonialRoute = require("./routes/testimonialRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
 app.use(cors({
   origin: "http://localhost:3000"
@@ -24,6 +25,7 @@ app.use(messageRoute);
 app.use(skillRoute);
 app.use(certificateRoute);
 app.use(testimonialRoute);
+app.use(dashboardRoutes);
 
 app.get("/", (req, res) => {
   res.send("Selamat Datang di Backend Portfolio");

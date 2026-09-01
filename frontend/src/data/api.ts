@@ -2,6 +2,25 @@ import { Project, SkillGroup, Certificate, Testimonial } from "./mockData";
 
 const API_BASE = "http://localhost:5000/api";
 
+export interface DashboardStats {
+  total_projects: number;
+  total_skills: number;
+  total_certificates: number;
+  total_testimonials: number;
+  total_messages: number;
+  unread_messages: number;
+}
+
+export interface ContactMessage {
+  id: number;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  is_read: boolean | number;
+  created_at: string;
+}
+
 // 1. Fetch Project
 export async function fetchProjects(): Promise<Project[]> {
   const response = await fetch(`${API_BASE}/projects`);
@@ -94,7 +113,7 @@ export async function fetchTestimonials(): Promise<Testimonial[]> {
   }));
 }
 
-// 5. Fetch Pesan Kontak
+// 5. Fetch Pesan Kontak (Kirim Pesan)
 export async function sendContactMessage(data: {
   name: string;
   email: string;
@@ -111,4 +130,28 @@ export async function sendContactMessage(data: {
 
   const json = await response.json();
   return json;
+}
+
+// 6. Fetch Semua Pesan Kontak (Untuk Admin)
+export async function fetchMessages(): Promise<ContactMessage[]> {
+  const response = await fetch(`${API_BASE}/messages`);
+  const json = await response.json();
+
+  if (!json.success) {
+    throw new Error(json.message || "Gagal mengambil data pesan");
+  }
+
+  return json.data;
+}
+
+// 7. Fetch Statistik Dashboard (Untuk Admin)
+export async function fetchDashboardStats(): Promise<DashboardStats> {
+  const response = await fetch(`${API_BASE}/dashboard/stats`);
+  const json = await response.json();
+
+  if (!json.success) {
+    throw new Error(json.message || "Gagal mengambil data statistik");
+  }
+
+  return json.data;
 }
