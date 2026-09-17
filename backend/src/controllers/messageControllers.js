@@ -51,7 +51,80 @@ const getMessages = (req, res) => {
   });
 };
 
+const toggleReadStatus = (req, res) => {
+  const { id } = req.params;
+  const { is_read } = req.body;
+
+  messageModel.getMessageById(id, (err, existing) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: "Gagal memeriksa data pesan",
+        error: err.message,
+      });
+    }
+
+    if (!existing) {
+      return res.status(404).json({
+        success: false,
+        message: "Pesan tidak ditemukan",
+      });
+    }
+
+    messageModel.updateReadStatus(id, is_read, (updateErr) => {
+      if (updateErr) {
+        return res.status(500).json({
+          success: false,
+          message: "Gagal mengubah status pesan",
+          error: updateErr.message,
+        });
+      }
+      res.json({
+        success: true,
+        message: `Pesan berhasil ditandai sebagai ${is_read ? "sudah" : "belum"} dibaca`,
+      });
+    });
+  });
+};
+
+const deleteMessage = (req, res) => {
+  const { id } = req.params;
+
+  messageModel.getMessageById(id, (err, existing) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: "Gagal memeriksa data pesan",
+        error: err.message,
+      });
+    }
+
+    if (!existing) {
+      return res.status(404).json({
+        success: false,
+        message: "Pesan yang akan dihapus tidak ditemukan",
+      });
+    }
+
+    messageModel.deleteMessage(id, (deleteErr) => {
+      if (deleteErr) {
+        return res.status(500).json({
+          success: false,
+          message: "Gagal menghapus pesan",
+          error: deleteErr.message,
+        });
+      }
+      res.json({
+        success: true,
+        message: "Pesan berhasil dihapus",
+      });
+    });
+  });
+};
+
 module.exports = {
   sendMessage,
   getMessages,
+  toggleReadStatus,
+  deleteMessage,
 };

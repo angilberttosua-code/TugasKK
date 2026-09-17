@@ -23,7 +23,7 @@ app.use(heroRoute);
 app.use(projectRoute);
 app.use(messageRoute);
 app.use(skillRoute);
-app.use(certificateRoute);
+app.use("/api/certificates", certificateRoute);
 app.use(testimonialRoute);
 app.use(dashboardRoutes);
 
