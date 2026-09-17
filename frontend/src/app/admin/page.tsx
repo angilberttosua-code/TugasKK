@@ -288,7 +288,7 @@ export default function AdminDashboardPage() {
             <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-xs text-indigo-300 leading-relaxed">
               💡 <strong>Tips Pembelajaran:</strong> Pada pertemuan selanjutnya,
               kita akan membangun form pembuatan dan pengeditan data (CRUD)
-              untuk setiap jenis konten di atas.
+              untuk setiap jenis konten di atas. Anjay
             </div>
           </div>
         </div>

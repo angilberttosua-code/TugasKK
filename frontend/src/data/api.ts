@@ -195,6 +195,20 @@ export async function fetchCertificateById(id: number | string): Promise<Certifi
   };
 }
 
+// ✅ Fungsi baru: upload file gambar sertifikat ke backend, mengembalikan URL-nya
+export async function uploadCertificateImage(file: File): Promise<string> {
+  const formData = new FormData();
+  formData.append("image", file);
+
+  const response = await fetch(`${API_BASE}/upload`, {
+    method: "POST",
+    body: formData, // jangan set Content-Type manual, browser akan set boundary otomatis
+  });
+  const json = await response.json();
+  if (!response.ok || !json.success) throw new Error(json.message || "Gagal mengunggah gambar");
+  return json.data.url;
+}
+
 export async function createCertificate(data: Omit<Certificate, "id">): Promise<{ success: boolean; message: string; data?: any }> {
   const response = await fetch(`${API_BASE}/certificates`, {
     method: "POST",
@@ -202,6 +216,7 @@ export async function createCertificate(data: Omit<Certificate, "id">): Promise<
     body: JSON.stringify({
       title: data.title, issuer: data.issuer, date: data.date,
       credential_id: data.credentialId, verification_url: data.verificationUrl,
+      image_url: data.image,
     }),
   });
   const json = await response.json();
@@ -216,6 +231,7 @@ export async function updateCertificate(id: number | string, data: Partial<Certi
     body: JSON.stringify({
       title: data.title, issuer: data.issuer, date: data.date,
       credential_id: data.credentialId, verification_url: data.verificationUrl,
+      image_url: data.image,
     }),
   });
   const json = await response.json();
